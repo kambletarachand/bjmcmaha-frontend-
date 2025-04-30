@@ -1,19 +1,19 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import HomePage from '../pages/HomePage';
-import AboutUs from '../pages/AboutUs';
-import News from '../pages/News';
-import Events from '../pages/Events';
-import JoinUs from '../pages/JoinUs';
-import Media from '../pages/Media';
-import Manifesto from '../pages/Manifesto';
-import Donate from '../pages/Donate';
-import ContactUs from '../pages/ContactUs';
-import AdminPanel from '../pages/AdminPanel';
-import DistrictLogin from '../pages/DistrictLogin';
-import NotFoundPage from '../pages/NotFoundPage'; // Make sure this exists
-import ProjectTree from '../pages/ProjectTree';
+import HomePage from './pages/HomePage';
+import AboutUs from './pages/AboutUs';
+import News from './pages/News';
+import Events from './pages/Events';
+import JoinUs from './pages/JoinUs';
+import Media from './pages/Media';
+import Manifesto from './pages/Manifesto';
+import Donate from './pages/Donate';
+import ContactUs from './pages/ContactUs';
+import AdminPanel from './pages/AdminPanel';
+import DistrictLogin from './pages/DistrictLogin';
+import NotFoundPage from './pages/NotFoundPage'; // Make sure this exists
+import ProjectTree from './pages/ProjectTree';
 
 function AppRoutes() {
     console.log({
@@ -40,7 +40,7 @@ function AppRoutes() {
       <Route path="/admin-login" element={<AdminPanel />} />
       <Route path="/district-login" element={<DistrictLogin />} />
       <Route path="*" element={<NotFoundPage />} />
-      <Route path="/tree" element={<ProjectTree/>} />
+      
     </Routes>
   );
 }

@@ -1,0 +1,25 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #003366;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header.scrolled {
+  padding: 0.5rem 1rem;
+}
+
+.logo-image {
+  height: 100px;
+  transition: height 0.3s ease;
+}
+
+.header.scrolled .logo-image {
+  height: 60px;
+}

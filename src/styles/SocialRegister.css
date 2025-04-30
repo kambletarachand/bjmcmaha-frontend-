@@ -1,0 +1,33 @@
+/* === Social Register Bar === */
+.social-register {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FF9933; /* Saffron */
+    color: white;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid #e88b2a;
+  }
+  
+  .social-register-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* evenly spaced between register and icons */
+  }
+  
+  .register-link a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+  }
+  
+  .register-link a:hover {
+    text-decoration: underline;
+  }
+  
+  .social-icons a {
+    color: white;
+    font-size: 1.5rem;
+    text-decoration: none;
+  }
+  

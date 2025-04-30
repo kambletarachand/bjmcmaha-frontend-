@@ -1,0 +1,146 @@
+/* === Layout Wrapper === */
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+  background-color: #FF9933; /* Saffron background */
+}
+
+/* === Header === */
+.header {
+  background-color: #FF9933;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.logo img {
+  height: 50px;
+  margin-right: 1rem;
+}
+
+/* === Navigation === */
+.navigation {
+  background-color: #FF9933;
+}
+
+.navigation ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+.navigation li {
+  margin: 0;
+}
+
+.navigation a {
+  display: block;
+  padding: 1rem 1.5rem;
+  color: white;
+  text-decoration: none;
+}
+
+/* === Main Content === */
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  background-color: #fff3e0; /* Light saffron-toned background for contrast */
+  color: #333;
+}
+
+/* === Page Breadcrumbs === */
+.breadcrumbs {
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.breadcrumbs a {
+  text-decoration: none;
+  color: white;
+}
+
+.breadcrumbs a:hover {
+  text-decoration: underline;
+}
+
+/* === Social Media + Register === */
+.social-register {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #FF9933;
+  border-bottom: 1px solid #e88b2a;
+  color: white;
+}
+
+.social-icons a {
+  margin-right: 1rem;
+  color: white;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+.register-link {
+  padding-left: 1rem;
+}
+
+.register-link a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  display: inline-block;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+/* === Footer === */
+.footer {
+  background-color: #FF9933;
+  color: white;
+  text-align: center;
+  padding: 1.5rem 1rem;
+  font-size: 0.9rem;
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .navigation ul {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .navigation a {
+    padding: 1rem;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .logo img {
+    margin-bottom: 1rem;
+  }
+
+  .social-register {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .register-link {
+    margin-top: 1rem;
+    padding-left: 0;
+  }
+}

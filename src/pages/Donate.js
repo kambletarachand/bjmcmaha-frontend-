@@ -1,11 +1,12 @@
 import React from 'react';
+import Layout from '../components/Layout';
 
 const Donate = () => {
   return (
-    <div>
+    <Layout>
       <h1>Donate</h1>
       <p>Support our party by contributing through our secure donation gateway.</p>
-    </div>
+    </Layout>
   );
 };
 

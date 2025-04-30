@@ -1,0 +1,27 @@
+.footer {
+    padding: 1rem;
+    background-color: #FF9933; /* Saffron */
+    color: white;
+    border-top: 1px solid #e88b2a;
+    margin-top: 2rem;
+    text-align: center;
+  }
+  
+  .footer-links {
+    margin-top: 0.5rem;
+  }
+  
+  .footer-links a {
+    margin-right: 1rem;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .footer-links a:last-child {
+    margin-right: 0;
+  }
+  
+  .footer-links a:hover {
+    text-decoration: underline;
+  }
+  
