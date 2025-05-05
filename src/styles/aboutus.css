@@ -1,40 +1,91 @@
 .aboutus-banner {
-    background-color: #fff3e0; /* soft saffron tone */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    gap: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    flex-wrap: wrap;
-  }
-  
-  .aboutus-logo {
-    width: 120px;
-    height: auto;
-  }
-  
-  .aboutus-content {
-    max-width: 700px;
-    text-align: left;
-  }
-  
-  .aboutus-content h1 {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-    color: #003366;
-  }
-  
-  .aboutus-content h2 {
-    font-size: 1.5rem;
-    color: #cc6600;
-    margin-bottom: 1rem;
-  }
-  
-  .aboutus-content p {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #333;
-  }
-  
+  background-color: #fff3e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  gap: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  flex-wrap: wrap;
+}
+
+.aboutus-logo {
+  width: 120px;
+  height: auto;
+}
+
+.aboutus-content {
+  max-width: 900px;
+  text-align: left;
+}
+
+.aboutus-content h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #003366;
+}
+
+.aboutus-content h2 {
+  font-size: 1.5rem;
+  color: #cc6600;
+  margin: 1.5rem 0 1rem;
+}
+
+.aboutus-content p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+.aboutus-content ul {
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.highlight-quote {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background-color: #fff8e1;
+  border-left: 5px solid #cc6600;
+  font-style: italic;
+  color: #444;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.team-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.team-card:hover {
+  transform: translateY(-5px);
+}
+
+.team-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.team-card h3 {
+  margin: 0.5rem 0 0.25rem;
+  color: #222;
+}
+
+.team-card p {
+  margin: 0;
+  color: #777;
+}

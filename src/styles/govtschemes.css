@@ -1,0 +1,57 @@
+.schemes-container {
+    padding: 2rem;
+    background-color: #f7f9fc;
+    min-height: 100vh;
+  }
+  
+  .schemes-container h1 {
+    font-size: 2rem;
+    color: #003366;
+    margin-bottom: 1rem;
+  }
+  
+  .search-bar {
+    width: 100%;
+    max-width: 500px;
+    padding: 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+  }
+  
+  .schemes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .scheme-card {
+    background-color: #fff;
+    border-left: 5px solid #cc6600;
+    padding: 1.2rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .scheme-card h2 {
+    font-size: 1.3rem;
+    color: #003366;
+  }
+  
+  .scheme-card p {
+    margin: 0.5rem 0;
+    line-height: 1.6;
+    color: #444;
+  }
+  
+  .scheme-card a {
+    color: #cc6600;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .scheme-card a:hover {
+    text-decoration: underline;
+  }
+  

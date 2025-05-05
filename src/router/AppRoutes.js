@@ -12,22 +12,22 @@ import Donate from '../pages/Donate';
 import ContactUs from '../pages/ContactUs';
 import AdminPanel from '../pages/AdminPanel';
 import DistrictLogin from '../pages/DistrictLogin';
-import NotFoundPage from '../pages/NotFoundPage'; // Make sure this exists
+import NotFoundPage from '../pages/NotFoundPage';
 import ProjectTree from '../pages/ProjectTree';
+import BJMCNational from '../pages/BJMCNational';
+import NewsAdmin from '../pages/NewsAdmin';
+import GovernmentSchemes from '../pages/GovernmentSchemes'; // ✅ Import
 
 function AppRoutes() {
-    console.log({
-        HomePage: typeof HomePage,
-        AboutUs: typeof AboutUs,
-        News: typeof News,
-        Events: typeof Events
-      });
-      
+  console.log({
+    HomePage: typeof HomePage,
+    AboutUs: typeof AboutUs,
+    News: typeof News,
+    Events: typeof Events
+  });
+
   return (
-
     <Routes>
-        
-
       <Route path="/" element={<HomePage />} />
       <Route path="/about" element={<AboutUs />} />
       <Route path="/news" element={<News />} />
@@ -39,8 +39,11 @@ function AppRoutes() {
       <Route path="/contact" element={<ContactUs />} />
       <Route path="/admin-login" element={<AdminPanel />} />
       <Route path="/district-login" element={<DistrictLogin />} />
+      <Route path="/tree" element={<ProjectTree />} />
+      <Route path="/bjmc-national" element={<BJMCNational />} />
+      <Route path="/admin/news" element={<NewsAdmin />} />
+      <Route path="/schemes" element={<GovernmentSchemes />} /> {/* ✅ New Route */}
       <Route path="*" element={<NotFoundPage />} />
-      <Route path="/tree" element={<ProjectTree/>} />
     </Routes>
   );
 }

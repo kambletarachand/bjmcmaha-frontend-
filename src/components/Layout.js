@@ -19,6 +19,7 @@ const getTitleFromPath = (pathname) => {
     'admin-login': 'Admin Login',
     'district-login': 'District Login',
     register: 'Register',
+    schemes: 'Government Schemes', // ✅ Added title mapping
   };
 
   const segments = pathname.split('/').filter(Boolean);

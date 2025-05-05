@@ -1,42 +1,46 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import '../styles/header.css'; // Make sure this path is correct
+import React, { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
+import '../styles/header.css';
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const handleScroll = () => {
+    setScrolled(window.scrollY > 50);
+  };
 
   useEffect(() => {
-    const handleScroll = () => {
-      const shouldBeScrolled = window.scrollY > 50;
-      if (shouldBeScrolled !== scrolled) {
-        setScrolled(shouldBeScrolled);
-      }
-    };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [scrolled]);
+  }, []);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
 
   return (
     <header className={`header ${scrolled ? 'scrolled' : ''}`}>
-      <nav className="navigation">
-        <Link to="/" className="logo-link">
-          <img
-            src="/images/bjmc logo.webp"
-            alt="BJMC Logo"
-            className="logo-image"
-          />
-        </Link>
-        <ul className="nav-menu">
-          <li><Link to="/" className="nav-link">Home</Link></li>
-          <li><Link to="/about" className="nav-link">About Us</Link></li>
-          <li><Link to="/news" className="nav-link">News</Link></li>
-          <li><Link to="/events" className="nav-link">Events</Link></li>
-          <li><Link to="/join" className="nav-link">Join Us</Link></li>
-          <li><Link to="/media" className="nav-link">Media</Link></li>
-          <li><Link to="/manifesto" className="nav-link">Manifesto</Link></li>
-          <li><Link to="/donate" className="nav-link">Donate</Link></li>
-          <li><Link to="/contact" className="nav-link">Contact</Link></li>
+      <NavLink to="/">
+        <img src="/images/bjmc logo.webp" alt="BJMC Logo" className="logo-image" />
+      </NavLink>
+
+      <button className="menu-toggle" onClick={toggleMenu} aria-label="Toggle menu">
+        ☰
+      </button>
+
+      <nav className={`main-nav ${menuOpen ? 'active' : ''}`}>
+        <ul>
+          <li><NavLink to="/" onClick={() => setMenuOpen(false)}>Home</NavLink></li>
+          <li><NavLink to="/about" onClick={() => setMenuOpen(false)}>About</NavLink></li>
+          <li><NavLink to="/news" onClick={() => setMenuOpen(false)}>News</NavLink></li>
+          <li><NavLink to="/events" onClick={() => setMenuOpen(false)}>Events</NavLink></li>
+          <li><NavLink to="/schemes" onClick={() => setMenuOpen(false)}>Schemes</NavLink></li>
+          <li><NavLink to="/join" onClick={() => setMenuOpen(false)}>Join Us</NavLink></li>
+          <li><NavLink to="/media" onClick={() => setMenuOpen(false)}>Media</NavLink></li>
+          <li><NavLink to="/manifesto" onClick={() => setMenuOpen(false)}>Manifesto</NavLink></li>
+          <li><NavLink to="/donate" onClick={() => setMenuOpen(false)}>Donate</NavLink></li>
+          <li><NavLink to="/contact" onClick={() => setMenuOpen(false)}>Contact</NavLink></li>
         </ul>
       </nav>
     </header>

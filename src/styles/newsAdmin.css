@@ -1,0 +1,41 @@
+.news-admin {
+    max-width: 800px;
+    margin: auto;
+    padding: 2rem;
+  }
+  
+  .news-form input,
+  .news-form textarea {
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+  }
+  
+  .news-form button {
+    padding: 0.6rem 1.2rem;
+    background-color: #003366;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .news-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+  }
+  
+  .news-table th,
+  .news-table td {
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+  }
+  
+  .news-table button {
+    padding: 0.4rem 0.8rem;
+    background-color: crimson;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
