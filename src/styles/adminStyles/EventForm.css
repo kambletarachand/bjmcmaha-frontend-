@@ -1,0 +1,44 @@
+.event-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+    max-width: 500px;
+  }
+  
+  .event-form input,
+  .event-form textarea,
+  .event-form button {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .event-form textarea {
+    min-height: 80px;
+    resize: vertical;
+  }
+  
+  .event-form button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .event-form button:hover {
+    background-color: #0056b3;
+  }
+  
+  .event-form .cancel-btn {
+    background-color: #dc3545;
+  }
+  
+  .event-form .cancel-btn:hover {
+    background-color: #c82333;
+  }
+  

@@ -1,0 +1,19 @@
+--- Contents of translation.json ---
+{
+  "home": {
+    "title": "Welcome to BJMC Maharashtra",
+    "subtitle": "Bharatiya Janata Majdoor Cell",
+    "aboutTitle": "About BJMC",
+    "aboutText": "BJMC is committed to the welfare of workers and laborers across Maharashtra.",
+    "newsTitle": "Latest News",
+    "newsDesc": "Read about recent updates, movements, and party achievements.",
+    "eventsTitle": "Events",
+    "eventsDesc": "Find upcoming events, protests, and public meetings.",
+    "schemesTitle": "Government Schemes",
+    "schemesDesc": "Explore labor-related welfare schemes and benefits.",
+    "contactTitle": "Contact Us",
+    "contactDesc": "Reach out to us with your queries or suggestions."
+  }
+}
+
+

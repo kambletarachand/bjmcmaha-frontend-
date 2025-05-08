@@ -1,0 +1,265 @@
+--- Contents of AdminEventsManager.js ---
+// AdminEventsManager.jsx
+
+import React, { useState, useEffect } from 'react';
+import '../../styles/adminStyles/adminSection.css';
+
+
+const AdminEventsManager = () => {
+  const [events, setEvents] = useState([]);
+  const [formData, setFormData] = useState({ title: '', description: '', date: '' });
+
+  useEffect(() => {
+    fetch('/api/events')
+      .then(res => res.json())
+      .then(data => setEvents(data));
+  }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetch('/api/events', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    }).then(() => {
+      alert("Event Added");
+      window.location.reload();
+    });
+  };
+
+  const handleDelete = (id) => {
+    fetch(`/api/events/${id}`, { method: 'DELETE' })
+      .then(() => window.location.reload());
+  };
+
+  return (
+    <div>
+      <h3>Manage Events</h3>
+      <form onSubmit={handleSubmit}>
+        <input placeholder="Title" onChange={e => setFormData({ ...formData, title: e.target.value })} />
+        <textarea placeholder="Description" onChange={e => setFormData({ ...formData, description: e.target.value })} />
+        <input type="date" onChange={e => setFormData({ ...formData, date: e.target.value })} />
+        <button type="submit">Add Event</button>
+      </form>
+
+      <ul>
+        {events.map(ev => (
+          <li key={ev.id}>
+            <strong>{ev.title}</strong> - {ev.date}
+            <button onClick={() => handleDelete(ev.id)}>Delete</button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default AdminEventsManager;
+
+
+--- Contents of AdminNewsManager.js ---
+// AdminNewsManager.jsx
+
+import React, { useState, useEffect } from 'react';
+import '../../styles/adminStyles/adminSection.css';
+
+
+const AdminNewsManager = () => {
+  const [newsList, setNewsList] = useState([]);
+  const [formData, setFormData] = useState({ title: '', summary: '', url: '' });
+
+  useEffect(() => {
+    fetch('/api/internal-news')  // Adjust endpoint as needed
+      .then(res => res.json())
+      .then(data => setNewsList(data));
+  }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetch('/api/internal-news', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    }).then(() => {
+      alert("News Posted");
+      window.location.reload();
+    });
+  };
+
+  const handleDelete = (id) => {
+    fetch(`/api/internal-news/${id}`, { method: 'DELETE' })
+      .then(() => window.location.reload());
+  };
+
+  return (
+    <div>
+      <h3>Manage News</h3>
+      <form onSubmit={handleSubmit}>
+        <input placeholder="Title" onChange={e => setFormData({...formData, title: e.target.value})} />
+        <textarea placeholder="Summary" onChange={e => setFormData({...formData, summary: e.target.value})} />
+        <input placeholder="URL" onChange={e => setFormData({...formData, url: e.target.value})} />
+        <button type="submit">Add News</button>
+      </form>
+
+      <ul>
+        {newsList.map(n => (
+          <li key={n.id}>
+            <strong>{n.title}</strong>
+            <button onClick={() => handleDelete(n.id)}>Delete</button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+export default AdminNewsManager;
+
+--- Contents of AdminPage WireFrame.txt ---
++--------------------------------------------------------+
+|                 Admin Dashboard (Title)               |
++--------------------------------------------------------+
+| [Tab: News]  [Tab: Events]  [Tab: Schemes]            |
++--------------------------------------------------------+
+
+|                       Active Tab Content              |
+| ---------------------------------------------------- |
+|  +----------------------------+                      |
+|  | Create/Update Form         |                      |
+|  | (Inputs, Textarea, Button) |                      |
+|  +----------------------------+                      |
+|                                                    |
+|  +--------------------------------------------+     |
+|  | List of Items (Table/List)                 |     |
+|  | - Title/Name                               |     |
+|  | - Delete/Edit buttons                      |     |
+|  +--------------------------------------------+     |
++--------------------------------------------------------+
+
+|           [Logout] [Analytics] [Logs] (Optional)      |
++--------------------------------------------------------+
+
+
+--- Contents of AdminPage.js ---
+// AdminPage.jsx
+
+import React from 'react';
+import { Tabs, Tab } from './Tabs'; // custom or UI-lib-based tabs
+import AdminNewsManager from './AdminNewsManager';
+import AdminEventsManager from './AdminEventsManager';
+import AdminSchemesManager from './AdminSchemesManager';
+import '../../styles/adminStyles/adminSection.css';
+
+
+const AdminPage = () => {
+  return (
+    <div className="admin-page-container">
+      <h2>Admin Dashboard</h2>
+      <Tabs>
+        <Tab label="News"><AdminNewsManager /></Tab>
+        <Tab label="Events"><AdminEventsManager /></Tab>
+        <Tab label="Schemes"><AdminSchemesManager/></Tab>
+      </Tabs>
+    </div>
+  );
+};
+
+export default AdminPage;
+
+
+--- Contents of AdminSchemesManager.js ---
+// AdminSchemesManager.jsx
+
+import React, { useState, useEffect } from 'react';
+import '../../styles/adminStyles/adminSection.css';
+
+
+ const AdminSchemesManager = () => {
+  const [schemes, setSchemes] = useState([]);
+  const [formData, setFormData] = useState({ name: '', summary: '', link: '' });
+
+  useEffect(() => {
+    fetch('/api/schemes')
+      .then(res => res.json())
+      .then(data => setSchemes(data));
+  }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetch('/api/schemes', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    }).then(() => {
+      alert("Scheme Added");
+      window.location.reload();
+    });
+  };
+
+  const handleDelete = (id) => {
+    fetch(`/api/schemes/${id}`, { method: 'DELETE' })
+      .then(() => window.location.reload());
+  };
+
+  return (
+    <div>
+      <h3>Manage Schemes</h3>
+      <form onSubmit={handleSubmit}>
+        <input placeholder="Scheme Name" onChange={e => setFormData({ ...formData, name: e.target.value })} />
+        <textarea placeholder="Summary" onChange={e => setFormData({ ...formData, summary: e.target.value })} />
+        <input placeholder="Link" onChange={e => setFormData({ ...formData, link: e.target.value })} />
+        <button type="submit">Add Scheme</button>
+      </form>
+
+      <ul>
+        {schemes.map(s => (
+          <li key={s.id}>
+            <strong>{s.name}</strong>
+            <button onClick={() => handleDelete(s.id)}>Delete</button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default AdminSchemesManager;
+
+
+--- Contents of Tabs.js ---
+// Tabs.jsx
+
+import React, { useState } from 'react';
+
+import '../../styles/adminStyles/tabs.css';
+
+export const Tabs = ({ children }) => {
+  const [activeTab, setActiveTab] = useState(0);
+
+  const handleTabClick = (index) => {
+    setActiveTab(index);
+  };
+
+  return (
+    <div className="tabs-container">
+      <div className="tab-titles">
+        {React.Children.map(children, (child, index) => (
+          <div
+            className={`tab-title ${activeTab === index ? 'active' : ''}`}
+            onClick={() => handleTabClick(index)}
+          >
+            {child.props.label}
+          </div>
+        ))}
+      </div>
+      <div className="tab-content">
+        {React.Children.toArray(children)[activeTab]}
+      </div>
+    </div>
+  );
+};
+
+export const Tab = ({ children }) => {
+  return <div>{children}</div>;
+};
+
+

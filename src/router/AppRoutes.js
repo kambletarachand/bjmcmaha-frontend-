@@ -10,13 +10,14 @@ import Media from '../pages/Media';
 import Manifesto from '../pages/Manifesto';
 import Donate from '../pages/Donate';
 import ContactUs from '../pages/ContactUs';
-import AdminPanel from '../pages/AdminPanel';
+
 import DistrictLogin from '../pages/DistrictLogin';
 import NotFoundPage from '../pages/NotFoundPage';
 import ProjectTree from '../pages/ProjectTree';
 import BJMCNational from '../pages/BJMCNational';
 import NewsAdmin from '../pages/NewsAdmin';
 import GovernmentSchemes from '../pages/GovernmentSchemes'; // ✅ Import
+import AdminPage from '../pages/AdminPages/AdminPage';
 
 function AppRoutes() {
   console.log({
@@ -37,7 +38,7 @@ function AppRoutes() {
       <Route path="/manifesto" element={<Manifesto />} />
       <Route path="/donate" element={<Donate />} />
       <Route path="/contact" element={<ContactUs />} />
-      <Route path="/admin-login" element={<AdminPanel />} />
+      <Route path="/admin-login" element={<AdminPage/>} /> 
       <Route path="/district-login" element={<DistrictLogin />} />
       <Route path="/tree" element={<ProjectTree />} />
       <Route path="/bjmc-national" element={<BJMCNational />} />

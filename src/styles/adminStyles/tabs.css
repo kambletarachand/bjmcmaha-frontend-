@@ -1,0 +1,31 @@
+/* tabs.css */
+.tabs-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .tab-titles {
+    display: flex;
+    border-bottom: 2px solid #ddd;
+  }
+  
+  .tab-title {
+    padding: 10px 20px;
+    cursor: pointer;
+    flex: 1;
+    text-align: center;
+    background-color: #f4f4f4;
+  }
+  
+  .tab-title.active {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .tab-content {
+    padding: 20px;
+    border: 1px solid #ddd;
+    margin-top: -1px;
+  }
+  

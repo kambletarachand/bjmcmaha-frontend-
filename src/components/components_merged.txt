@@ -1,0 +1,226 @@
+--- Contents of .gitkeep ---
+
+
+--- Contents of Footer.js ---
+import React from 'react';
+import { Link } from 'react-router-dom';
+import '../styles/footer.css'; // Adjust the path if needed
+
+const Footer = () => {
+  return (
+    <footer className="footer">
+      <p>© {new Date().getFullYear()} BJMC Maharashtra. All rights reserved.</p>
+      <div className="footer-links">
+        <Link to="/admin-login">Admin Login</Link>
+        <Link to="/district-login">District Login</Link>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
+
+
+--- Contents of Header.js ---
+import React, { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
+import '../styles/header.css';
+import LanguageSwitcher from './LanguageSwitcher'; // Import the LanguageSwitcher component
+
+const Header = () => {
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const handleScroll = () => {
+    setScrolled(window.scrollY > 50);
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+  return (
+    <header className={`header ${scrolled ? 'scrolled' : ''}`}>
+      <NavLink to="/">
+        <img src="/images/bjmc logo.webp" alt="BJMC Logo" className="logo-image" />
+      </NavLink>
+
+      <button className="menu-toggle" onClick={toggleMenu} aria-label="Toggle menu">
+        ☰
+      </button>
+
+      <nav className={`main-nav ${menuOpen ? 'active' : ''}`}>
+        <ul>
+          <li><NavLink to="/" onClick={() => setMenuOpen(false)}>Home</NavLink></li>
+          <li><NavLink to="/about" onClick={() => setMenuOpen(false)}>About</NavLink></li>
+          <li><NavLink to="/news" onClick={() => setMenuOpen(false)}>News</NavLink></li>
+          <li><NavLink to="/events" onClick={() => setMenuOpen(false)}>Events</NavLink></li>
+          <li><NavLink to="/schemes" onClick={() => setMenuOpen(false)}>Schemes</NavLink></li>
+          <li><NavLink to="/join" onClick={() => setMenuOpen(false)}>Join Us</NavLink></li>
+          <li><NavLink to="/media" onClick={() => setMenuOpen(false)}>Media</NavLink></li>
+          <li><NavLink to="/manifesto" onClick={() => setMenuOpen(false)}>Manifesto</NavLink></li>
+          <li><NavLink to="/donate" onClick={() => setMenuOpen(false)}>Donate</NavLink></li>
+          <li><NavLink to="/contact" onClick={() => setMenuOpen(false)}>Contact</NavLink></li>
+        </ul>
+      </nav>
+
+      {/* Add LanguageSwitcher here */}
+      <LanguageSwitcher />
+    </header>
+  );
+};
+
+export default Header;
+
+
+--- Contents of LanguageSwitcher.js ---
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import '../styles/languageSwitcher.css';
+
+const LanguageSwitcher = () => {
+  const { i18n } = useTranslation();
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+
+  return (
+    <div className="language-switcher">
+      <button onClick={() => changeLanguage('en')}>EN</button>
+      <button onClick={() => changeLanguage('hi')}>हिंदी</button>
+      <button onClick={() => changeLanguage('mr')}>मराठी</button>
+    </div>
+  );
+};
+
+export default LanguageSwitcher;
+
+
+--- Contents of Layout.js ---
+import React from 'react';
+import { useLocation, Link } from 'react-router-dom';
+import Header from './Header';
+import Footer from './Footer';
+import SocialRegister from './SocialRegister'; // Imported new component
+import '../styles/layout.css';
+
+const getTitleFromPath = (pathname) => {
+  const titles = {
+    '': 'Home',
+    about: 'About Us',
+    news: 'News',
+    events: 'Events',
+    join: 'Join Us',
+    media: 'Media',
+    manifesto: 'Manifesto',
+    donate: 'Donate',
+    contact: 'Contact',
+    'admin-login': 'Admin Login',
+    'district-login': 'District Login',
+    register: 'Register',
+    schemes: 'Government Schemes', // ✅ Added title mapping
+  };
+
+  const segments = pathname.split('/').filter(Boolean);
+  const lastSegment = segments[segments.length - 1] || '';
+  return titles[lastSegment] || lastSegment.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+};
+
+const Layout = ({ children }) => {
+  const location = useLocation();
+  const pathSegments = location.pathname.split('/').filter(Boolean);
+
+  return (
+    <div className="layout">
+      {/* Social Media + Register Section */}
+      <SocialRegister />
+
+      {/* Header */}
+      <Header />
+
+      {/* Main Content */}
+      <main className="main-content">
+        {/* Page Header */}
+        <div className="page-header">
+          {/* Breadcrumbs */}
+          <nav className="breadcrumbs">
+            <Link to="/">Home</Link>
+            {pathSegments.map((seg, idx) => {
+              const path = '/' + pathSegments.slice(0, idx + 1).join('/');
+              const isLast = idx === pathSegments.length - 1;
+              return (
+                <span key={path}>
+                  {' / '}
+                  {isLast ? (
+                    <span>{getTitleFromPath(path)}</span>
+                  ) : (
+                    <Link to={path}>{getTitleFromPath(path)}</Link>
+                  )}
+                </span>
+              );
+            })}
+          </nav>
+
+          {/* Title */}
+          <h2>{getTitleFromPath(location.pathname)}</h2>
+        </div>
+
+        {/* Page Content */}
+        <div className="page-content">
+          {children}
+        </div>
+      </main>
+
+      {/* Footer */}
+      <Footer />
+    </div>
+  );
+};
+
+export default Layout;
+
+
+--- Contents of SocialRegister.js ---
+import React from 'react';
+import { Link } from 'react-router-dom';
+import '../styles/SocialRegister.css';
+
+const SocialRegister = () => {
+  return (
+    <div className="social-register">
+      <div className="social-register-left"></div>
+      <div className="social-register-right">
+        <div className="register-link">
+          <Link to="/register">Register</Link>
+        </div>
+        <div className="social-icons">
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <i className="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+            <i className="fab fa-twitter"></i>
+          </a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <i className="fab fa-instagram"></i>
+          </a>
+          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+            <i className="fab fa-youtube"></i>
+          </a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <i className="fab fa-linkedin-in"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default SocialRegister;
+
+
