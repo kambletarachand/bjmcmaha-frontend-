@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import '../styles/header.css';
-import LanguageSwitcher from './LanguageSwitcher'; // Import the LanguageSwitcher component
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -44,9 +43,6 @@ const Header = () => {
           <li><NavLink to="/contact" onClick={() => setMenuOpen(false)}>Contact</NavLink></li>
         </ul>
       </nav>
-
-      {/* Add LanguageSwitcher here */}
-      <LanguageSwitcher />
     </header>
   );
 };
