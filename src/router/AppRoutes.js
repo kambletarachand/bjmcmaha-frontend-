@@ -18,8 +18,6 @@ import BJMCNational from '../pages/BJMCNational';
 import NewsAdmin from '../pages/NewsAdmin';
 import GovernmentSchemes from '../pages/GovernmentSchemes'; // ✅ Import
 import AdminPage from '../pages/AdminPages/AdminPage';
-import MaharastraMapPage from'../pages/MaharastraMapPage';
-import OrgTree from '../components/OrgTree';
 
 function AppRoutes() {
   console.log({
@@ -47,9 +45,7 @@ function AppRoutes() {
       <Route path="/admin/news" element={<NewsAdmin />} />
       <Route path="/schemes" element={<GovernmentSchemes />} /> {/* ✅ New Route */}
       <Route path="*" element={<NotFoundPage />} />
-      <Route path="/maharstra-map" element={<MaharastraMapPage/>} />
-      <Route path="/org-tree-view" element={<OrgTree/>}/>
-      </Routes>
+    </Routes>
   );
 }
 

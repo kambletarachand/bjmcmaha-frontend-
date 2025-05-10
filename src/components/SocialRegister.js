@@ -8,7 +8,7 @@ const SocialRegister = () => {
       <div className="social-register-left"></div>
       <div className="social-register-right">
         <div className="register-link">
-          <Link to="/register">Login</Link>
+          <Link to="/register">Register</Link>
         </div>
         <div className="social-icons">
           <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">

@@ -39,7 +39,7 @@ const Header = () => {
           <li><NavLink to="/schemes" onClick={() => setMenuOpen(false)}>Schemes</NavLink></li>
           <li><NavLink to="/join" onClick={() => setMenuOpen(false)}>Join Us</NavLink></li>
           <li><NavLink to="/media" onClick={() => setMenuOpen(false)}>Media</NavLink></li>
-         {/*} <li><NavLink to="/manifesto" onClick={() => setMenuOpen(false)}>Manifesto</NavLink></li>*/}
+          <li><NavLink to="/manifesto" onClick={() => setMenuOpen(false)}>Manifesto</NavLink></li>
           <li><NavLink to="/donate" onClick={() => setMenuOpen(false)}>Donate</NavLink></li>
           <li><NavLink to="/contact" onClick={() => setMenuOpen(false)}>Contact</NavLink></li>
         </ul>
