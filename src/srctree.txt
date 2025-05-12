@@ -1,0 +1,71 @@
+D:\myprojects\bjmcmaha.xyz\frontend\src
+├── App.css
+├── App.js
+├── App.test.js
+├── AppRoutes.js
+├── PythonFiles
+│   ├── MergeFiles.py
+│   └── TreeView.py
+├── assets
+│   └── .gitkeep
+├── components
+│   ├── .gitkeep
+│   ├── Footer.js
+│   ├── Header.js
+│   ├── Layout.js
+│   └── SocialRegister.js
+├── hooks
+│   └── .gitkeep
+├── index.css
+├── index.js
+├── logo.svg
+├── pages
+│   ├── .gitkeep
+│   ├── AboutUs.js
+│   ├── AdminPanel.js
+│   ├── BJMCNational.js
+│   ├── ContactUs.js
+│   ├── DistrictLogin.js
+│   ├── Donate.js
+│   ├── Events.js
+│   ├── GovernmentSchemes.js
+│   ├── Home.js
+│   ├── HomePage.js
+│   ├── JoinUs.js
+│   ├── Manifesto.js
+│   ├── Media.js
+│   ├── News.js
+│   ├── NewsAdmin.js
+│   ├── NotFoundPage.js
+│   ├── ProjectTree.js
+│   └── merged_files
+├── redux
+│   ├── slices
+│   └── store.js
+├── reportWebVitals.js
+├── router
+│   └── AppRoutes.js
+├── service-worker.js
+├── serviceWorkerRegistration.js
+├── services
+│   └── .gitkeep
+├── setupTests.js
+├── srctree.txt
+├── styles
+│   ├── SocialRegister.css
+│   ├── aboutus.css
+│   ├── bjmcNational.css
+│   ├── events.css
+│   ├── footer.css
+│   ├── governmentSchemes.css
+│   ├── govtschemes.css
+│   ├── header.css
+│   ├── homepage.css
+│   ├── joinus.css
+│   ├── layout.css
+│   ├── manifesto.css
+│   ├── media.css
+│   ├── news.css
+│   └── newsAdmin.css
+└── utils
+    └── constants.js

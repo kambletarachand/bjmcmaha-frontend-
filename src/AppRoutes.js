@@ -14,6 +14,7 @@ import AdminPanel from './pages/AdminPanel';
 import DistrictLogin from './pages/DistrictLogin';
 import NotFoundPage from './pages/NotFoundPage'; // Make sure this exists
 import ProjectTree from './pages/ProjectTree';
+//import LoginPage from'../Auth/LoginPage';
 
 function AppRoutes() {
     console.log({
@@ -26,13 +27,12 @@ function AppRoutes() {
   return (
 
     <Routes>
-        
-
       <Route path="/" element={<HomePage />} />
       <Route path="/about" element={<AboutUs />} />
+      <Route path="/login" element={<LoginPage />} />
       <Route path="/news" element={<News />} />
       <Route path="/events" element={<Events />} />
-      <Route path="/join" element={<JoinUs />} />
+     {/* <Route path="/join" element={<JoinUs />} />*/}
       <Route path="/media" element={<Media />} />
       <Route path="/manifesto" element={<Manifesto />} />
       <Route path="/donate" element={<Donate />} />
@@ -40,7 +40,6 @@ function AppRoutes() {
       <Route path="/admin-login" element={<AdminPanel />} />
       <Route path="/district-login" element={<DistrictLogin />} />
       <Route path="*" element={<NotFoundPage />} />
-      
     </Routes>
   );
 }
