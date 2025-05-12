@@ -1,91 +1,62 @@
-// src/LoginComponents/SignupModal.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
-import { signupVisitor } from '../redux/slices/userSlice';
+import axios from 'axios';
 import '../styles/login_css/signupmodal.css';
 
-const SignupModal = ({ isOpen, onClose, initialEmail }) => {
+const SignupModal = ({ isOpen, onClose, initialEmail, onComplete }) => {
   const [email, setEmail] = useState(initialEmail || '');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [address, setAddress] = useState('');
-  const [role, setRole] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
-  const dispatch = useDispatch();
+  useEffect(() => {
+    setEmail(initialEmail || '');
+  }, [initialEmail]);
 
-  const handleSignup = async (e) => {
+  const clearFields = () => {
+    setPassword('');
+    setConfirmPassword('');
+    setPhoneNumber('');
+    setAddress('');
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log('Signup form submitted');
-    console.log('Form values:', {
-      email,
-      password,
-      confirmPassword,
-      phoneNumber,
-      address,
-      role,
-    });
-
-    if (!email || !password || !confirmPassword || !phoneNumber || !address || !role) {
-      console.log('Validation failed: Missing fields');
+    if (!password || !confirmPassword || !phoneNumber || !address) {
       setError('All fields are required.');
       return;
     }
 
     if (password !== confirmPassword) {
-      console.log('Validation failed: Passwords do not match');
       setError('Passwords do not match.');
       return;
     }
 
-    // const signupData = {
-    //   email,
-    //   password,
-    //   phoneNumber,
-    //   address,
-    //   role,
-    // };
-console.log(email,phoneNumber,address,password,role);
-    const signupData = {
-      contactDetails: {
+    try {
+      await axios.put(`http://localhost:8989/api/visitors/set-password?email=${email}&password=${password}`);
+      await axios.put(`http://localhost:8989/api/visitors/update-contact`, {
         email,
         phoneNumber,
         address,
-      },
-      password,
-      role,
-    };
-    
+      });
 
-    console.log('Attempting to dispatch signupVisitor with:', signupData);
-
-    try {
-      const response = await dispatch(signupVisitor(signupData));
-      console.log('Signup successful:', response);
-      setSuccess('Registration successful! Please check your email for verification.');
+      setSuccess('Account setup complete!');
       clearFields();
+
+      if (onComplete) onComplete();
     } catch (err) {
-      console.error('Signup failed:', err);
-      setError('Failed to register. Please try again.');
+      console.error(err);
+      setError('Failed to update account. Please try again.');
     }
   };
 
-  const clearFields = () => {
-    setEmail('');
-    setPassword('');
-    setConfirmPassword('');
-    setPhoneNumber('');
-    setAddress('');
-    setRole('');
-  };
-
   const handleClose = () => {
-    setSuccess('');
     setError('');
+    setSuccess('');
     clearFields();
     onClose();
   };
@@ -95,18 +66,12 @@ console.log(email,phoneNumber,address,password,role);
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <h2>Sign Up</h2>
-        <form onSubmit={handleSignup}>
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+        <h2>Complete Your Account</h2>
+        <form onSubmit={handleSubmit}>
+          <input type="email" value={email} readOnly />
           <input
             type="password"
-            placeholder="Password"
+            placeholder="New Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
@@ -132,20 +97,9 @@ console.log(email,phoneNumber,address,password,role);
             onChange={(e) => setAddress(e.target.value)}
             required
           />
-          <select value={role} onChange={(e) => setRole(e.target.value)} required>
-            <option value="">Select Role</option>
-            <option value="Admin">Admin</option>
-            <option value="Owner">Owner</option>
-            <option value="Resident">Resident</option>
-            <option value="Community">Community</option>
-            <option value="Lawyer">Lawyer</option>
-            <option value="Trainer">Trainer</option>
-            <option value="Consultant">Consultant</option>
-            <option value="Vendor">Vendor</option>
-          </select>
           {error && <p className="error-message">{error}</p>}
           {success && <p className="success-message">{success}</p>}
-          <button type="submit">Sign Up</button>
+          <button type="submit">Finish Setup</button>
         </form>
         <button onClick={handleClose}>Close</button>
       </div>
@@ -157,6 +111,7 @@ SignupModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   initialEmail: PropTypes.string,
+  onComplete: PropTypes.func,
 };
 
 export default SignupModal;

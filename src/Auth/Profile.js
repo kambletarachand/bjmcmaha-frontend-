@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
-
 import '../../styles/profile.css';
 
 const Profile = () => {
@@ -12,7 +11,7 @@ const Profile = () => {
     name: '',
     phone: '',
     address: '',
-    role: 'user',
+    role: 'Visitor',
     id: null,
   });
   const [loading, setLoading] = useState(true);
@@ -27,7 +26,7 @@ const Profile = () => {
       return;
     }
 
-    axios.get(`http://localhost:8080/api/visitors/${visitorData.email}`)
+    axios.get(`http://localhost:8989/api/visitors/${visitorData.email}`)
       .then(response => {
         if (response.data && response.data.verified) {
           setVisitorData(prevState => ({
@@ -43,9 +42,8 @@ const Profile = () => {
   }, [visitorData.email, navigate]);
 
   const handlePasswordSubmit = async () => {
-    console.log("Inside handlePasswordSubmit");
     try {
-      const response = await axios.post('http://localhost:8080/api/visitors/request/login', {
+      const response = await axios.post('http://localhost:8989/api/visitors/request/login', {
         email: visitorData.email,
         password,
       });
@@ -55,7 +53,7 @@ const Profile = () => {
       } else {
         setVerificationError('Incorrect password. Please try again.');
       }
-    } catch (error) {
+    } catch {
       setVerificationError('Failed to verify password. Please try again.');
     }
   };
@@ -66,38 +64,16 @@ const Profile = () => {
         case 'Admin':
           navigate('/admin');
           break;
-        case 'Owner':
-          navigate('/owner-dashboard', {
+        case 'Visitor':
+          navigate('/user-dashboard');
+          break;
+        case 'Donor':
+          navigate('/donor-dashboard', {
             state: { visitorId: visitorData.id, visitorEmail: visitorData.email, name: visitorData.name },
           });
           break;
-        case 'Resident':
-          navigate('/resident-dashboard', {
-            state: { visitorId: visitorData.id, visitorEmail: visitorData.email, name: visitorData.name },
-          });
-          break;
-        case 'Community':
-          navigate('/community-dashboard', {
-            state: { visitorId: visitorData.id, visitorEmail: visitorData.email, name: visitorData.name },
-          });
-          break;
-        case 'Lawyer':
-          navigate('/lawyer-dashboard', {
-            state: { visitorId: visitorData.id, visitorEmail: visitorData.email, name: visitorData.name },
-          });
-          break;
-        case 'Trainer':
-          navigate('/trainer-dashboard', {
-            state: { visitorId: visitorData.id, isAuthenticated: true },
-          });
-          break;
-        case 'Consultant':
-          navigate('/consultant-dashboard', {
-            state: { visitorId: visitorData.id, visitorEmail: visitorData.email, name: visitorData.name },
-          });
-          break;
-        case 'Vendor':
-          navigate('/vendor-area', {
+        case 'BJMC-Team':
+          navigate('/team-dashboard', {
             state: { visitorId: visitorData.id, visitorEmail: visitorData.email, name: visitorData.name },
           });
           break;

@@ -1,142 +1,126 @@
-// LoginPage.js
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginVisitor } from '../redux/slices/visitorSlice';
+import Layout from '../components/Layout';
 import SignupModal from './SignupModal';
 import '../styles/login_css/login.css';
 import '../styles/login_css/profile.css';
-//import '../styles/signupmodal.css';
 import '../styles/login_css/signupmodal.css';
 
 const LoginPage = () => {
-  const [visitorData, setVisitorData] = useState({ email: '', role: 'user' });
-  const [isNewUser, setIsNewUser] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [showSignupModal, setShowSignupModal] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
-  const navigate = useNavigate();
-  const [initialEmail, setInitialEmail] = useState('');
   const [emailSent, setEmailSent] = useState(false);
-  const [isVerified, setIsVerified] = useState(false);
+  const [showSignupModal, setShowSignupModal] = useState(false);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setVisitorData((prevState) => ({ ...prevState, [name]: value }));
-    
-    if (name === 'email') {
-      validateEmail(value);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { loading, error, isAuthenticated, visitor } = useSelector((state) => state.visitor);
+
+  // On successful login, navigate to dashboard
+  useEffect(() => {
+    if (isAuthenticated && visitor?.verified) {
+      navigate('/dashboard');
+    } else if (isAuthenticated && !visitor?.verified) {
+      setEmailSent(true);
+      setShowSignupModal(true);
     }
-  };
+  }, [isAuthenticated, visitor, navigate]);
+
+  useEffect(() => {
+    document.body.classList.add('login-open');
+    return () => {
+      document.body.classList.remove('login-open');
+    };
+  }, []);
 
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     setEmailError(!emailRegex.test(email) ? 'Invalid email format' : '');
   };
 
-  const checkVisitorData = async () => {
-    if (emailError) {
-      setError('Please fix the errors before submitting');
-      return;
-    }
-
-    setLoading(true);
-    try {
-      const response = await axios.get(`http://localhost:8989/api/visitors/${visitorData.email}`);
-      console.log("response.data",response.data);
-      if (response.data) {
-        setIsNewUser(false);
-        const isVerified = response.data.verified;
-        if (!isVerified) {
-          setEmailSent(true);
-          await axios.post(`http://localhost:8989/api/visitors/send-verification`, { email: visitorData.email });
-          console.log("sending verification mail");
-          setError('Please verify your email before logging in.');
-        } else {
-          navigateToProfile();
-        }
-      } else {
-        setIsNewUser(true);
-        setInitialEmail(visitorData.email);
-        setShowSignupModal(true);
-      }
-    } catch (error) {
-      console.error("Error fetching visitor data:", error);
-      setError('Failed to fetch visitor data. Please check your email.');
-    } finally {
-      setLoading(false);
-    }
+  const handleEmailChange = (e) => {
+    const value = e.target.value;
+    setEmail(value);
+    validateEmail(value);
   };
 
   const handleLogin = (e) => {
     e.preventDefault();
-    checkVisitorData();
+    if (emailError || !password) return;
+    dispatch(loginVisitor({ email, password }));
+  };
+
+  const handleSignupClose = () => {
+    setShowSignupModal(false);
+    setEmailSent(true);
   };
 
   const handleSignupComplete = () => {
     setShowSignupModal(false);
-    setEmailSent(true);
-    navigateToProfile();
+    setEmailSent(false);
+    setPassword('');
   };
-
-  const navigateToProfile = () => {
-    navigate('/profile', { state: { visitorEmail: visitorData.email } });
-  };
-
-  const handleSignup = async (signupData) => {
-    console.log("inside handleSignup");
-    try {
-      const response = await fetch('http://localhost:8989/api/visitors/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(signupData),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to sign up. Please check your details.');
-      }
-
-      await response.json();
-      handleSignupComplete();
-    } catch (error) {
-      console.error('Signup error:', error);
-      throw error; // Handle this in the modal
-    }
-    
-  };
-
-  if (loading) return <div className="login-container">Loading...</div>;
-  if (error) return <div className="login-container">Error: {error}</div>;
 
   return (
-    <div className="login-container">
-      <h1>Login Page</h1>
-      <form onSubmit={handleLogin}>
-        <div>
-          <label>Email:</label>
-          <input
-            type="email"
-            name="email"
-            value={visitorData.email}
-            onChange={handleChange}
-            required
-          />
-          {emailError && <p className="error">{emailError}</p>}
+    <Layout>
+      <div className="login-overlay">
+        <div className="login-floating-container">
+          <div className="login-container">
+            <h1>Login Page</h1>
+            <form onSubmit={handleLogin}>
+              <div className="form-group">
+                <label htmlFor="email">Email:</label>
+                <input
+                  id="email"
+                  type="email"
+                  value={email}
+                  onChange={handleEmailChange}
+                  required
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="password">Password:</label>
+                <input
+                  id="password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </div>
+
+              <button type="submit" disabled={loading || !!emailError}>
+                {loading ? 'Logging in...' : 'Login'}
+              </button>
+            </form>
+
+            {emailError && <p className="error-message">{emailError}</p>}
+            {error && <p className="error-message">{error}</p>}
+            {emailSent && (
+              <p className="success-message">
+                A verification email has been sent to <strong>{email}</strong>. Please check your inbox.
+              </p>
+            )}
+          </div>
         </div>
-        <button type="submit" disabled={!!emailError}>Login</button>
-      </form>
-      {isNewUser && showSignupModal && (
-        <SignupModal
-          isOpen={showSignupModal}
-          onClose={() => setShowSignupModal(false)}
-          onSignup={handleSignup}
-          initialEmail={initialEmail}
-        />
-      )}
-      {emailSent && <p>A verification email has been sent to {initialEmail}. Please check your inbox.</p>}
-    </div>
+
+        {showSignupModal && (
+          <SignupModal
+            isOpen={showSignupModal}
+            onClose={handleSignupClose}
+            initialEmail={email}
+            onComplete={handleSignupComplete}
+          />
+        )}
+      </div>
+    </Layout>
   );
 };
 
 export default LoginPage;
+
 

@@ -1,0 +1,43 @@
+/* membershipcard.css */
+
+.membership-card {
+  background-color: #e8f5e9;
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 600px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.membership-card h2 {
+  color: #1b5e20;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.membership-card a {
+  text-decoration: none;
+}
+
+.membership-card button {
+  background-color: #2e7d32;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.membership-card button:hover {
+  background-color: #1b5e20;
+}
+
+.membership-card p {
+  color: #555;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+}
