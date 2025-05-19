@@ -18,9 +18,17 @@ export const loginVisitor = createAsyncThunk(
         email,
         password,
       });
-      return response.data;
+
+      const visitor = response.data;
+
+      // Check if email is verified
+      if (!visitor.verified) {
+        return rejectWithValue('Email not verified. Please check your inbox.');
+      }
+
+      return visitor;
     } catch (err) {
-      return rejectWithValue(err.response?.data?.message || 'Login failed');
+      return rejectWithValue(err.response?.data || 'Login failed. Please try again.');
     }
   }
 );
@@ -32,6 +40,7 @@ const visitorSlice = createSlice({
     logoutVisitor: (state) => {
       state.visitor = null;
       state.isAuthenticated = false;
+      state.error = null;
     },
   },
   extraReducers: (builder) => {
@@ -39,16 +48,19 @@ const visitorSlice = createSlice({
       .addCase(loginVisitor.pending, (state) => {
         state.loading = true;
         state.error = null;
+        state.isAuthenticated = false;
       })
       .addCase(loginVisitor.fulfilled, (state, action) => {
         state.loading = false;
         state.visitor = action.payload;
         state.isAuthenticated = true;
+        state.error = null;
       })
       .addCase(loginVisitor.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.visitor = null;
         state.isAuthenticated = false;
+        state.error = action.payload;
       });
   },
 });

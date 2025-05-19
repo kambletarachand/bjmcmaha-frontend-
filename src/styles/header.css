@@ -2,11 +2,12 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  background-color: #003366;
+  background-color: #FF9933; /* Saffron color */
   padding: 1rem 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: nowrap;
   transition: all 0.3s ease;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
@@ -16,15 +17,15 @@
 }
 
 .logo-image {
-  height: 100px;
+  height: 80px;
   transition: height 0.3s ease;
 }
 
 .header.scrolled .logo-image {
-  height: 60px;
+  height: 50px;
 }
 
-/* Navigation Styling */
+/* === NAVIGATION === */
 .main-nav {
   display: flex;
   gap: 1rem;
@@ -33,9 +34,9 @@
 .main-nav ul {
   list-style: none;
   display: flex;
+  gap: 1.5rem;
   margin: 0;
   padding: 0;
-  gap: 1.5rem;
 }
 
 .main-nav li a {
@@ -49,7 +50,43 @@
   text-decoration: underline;
 }
 
-/* Hamburger toggle */
+/* === RIGHT SECTION === */
+
+
+.auth-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: white;
+  font-weight: 500;
+}
+
+.logout-button {
+  background-color: #cc6600;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.9rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #b35400;
+}
+
+.login-button {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.welcome-text {
+  font-size: 0.9rem;
+}
+
+/* === HAMBURGER MENU === */
 .menu-toggle {
   display: none;
   font-size: 2rem;
@@ -59,7 +96,7 @@
   cursor: pointer;
 }
 
-/* Responsive layout */
+/* === RESPONSIVE === */
 @media (max-width: 768px) {
   .menu-toggle {
     display: block;
@@ -70,9 +107,9 @@
     position: absolute;
     top: 100%;
     right: 0;
-    background-color: #003366;
+    background-color: #FF9933;
     flex-direction: column;
-    width: 200px;
+    width: 220px;
     padding: 1rem;
   }
 
@@ -88,4 +125,21 @@
   .main-nav li a {
     color: white;
   }
+
+  .header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.4rem;
 }
+
+@media (max-width: 768px) {
+  .header-right {
+    align-items: flex-start;
+    padding-top: 0.5rem;
+  }
+}
+
+}
+
+

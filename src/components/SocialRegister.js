@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import '../styles/SocialRegister.css';
 
 const SocialRegister = () => {
@@ -7,9 +6,6 @@ const SocialRegister = () => {
     <div className="social-register">
       <div className="social-register-left"></div>
       <div className="social-register-right">
-        <div className="register-link">
-          <Link to="/login">Login</Link>
-        </div>
         <div className="social-icons">
           <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
             <i className="fab fa-facebook-f"></i>

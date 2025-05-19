@@ -21,6 +21,7 @@ import AdminPage from '../pages/AdminPages/AdminPage';
 import MaharastraMapPage from'../pages/MaharastraMapPage';
 import OrgTree from '../components/OrgTree';
 import LoginPage from '../Auth/LoginPage';
+import UserDashboard from '../pages/UserDashBoard';
 
 function AppRoutes() {
   console.log({
@@ -51,6 +52,7 @@ function AppRoutes() {
       <Route path="/maharstra-map" element={<MaharastraMapPage/>} />
       <Route path="/org-tree-view" element={<OrgTree/>}/>
       <Route path="/login"  element={<LoginPage/>}/>
+      <Route path="/dashboard" element={<UserDashboard />} />
       </Routes>
   );
 }

@@ -1,0 +1,34 @@
+D:\myprojects\bjmcmaha.xyz\frontend\public\profile images
+├── 1.jpeg
+├── 2.jpeg
+├── 3.jpeg
+├── 4.jpeg
+├── 5.jpeg
+├── A4E0B0A5E0B2A520A4E0BEA4E0%A.pdf
+├── Amrapali Gaikwad.jpg
+├── Arnab_Chatterjee's_life.pdf
+├── Atharva Shitole.pdf
+├── Biswapriya_Roy_chowdhury's_life.pdf
+├── Introducing Ekta Sanghvi.pdf
+├── aroona aadhar.jpeg
+├── general secretary
+│   ├── Aroona_General Secretary.jpeg
+│   └── Ekta Sanghvvi_General Secretary.jpeg
+├── members
+│   ├── Atharva Shitole_member.png
+│   ├── Audhut Chavan_member.jpeg
+│   └── Umakant Fulzele_member.jpg
+├── p.jpeg
+├── pande profile.jpeg
+├── secretary
+│   ├── Aniket Lagad Secretary.jpg
+│   ├── BhavenShah_Secretary.jpeg
+│   ├── Ganesh Surve _Secretary.jpg
+│   ├── Kiran Sunil Vaswani_Secretary.jpeg
+│   └── Sujit Dhanak_Secretary.jpg
+├── treasurer
+├── treestr.txt
+└── vice president
+    ├── Jayesh Tank_VP.jpg
+    ├── SantoshKasbe_vp.jpeg
+    └── nilesh makwana VP.jpg

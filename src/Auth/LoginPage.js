@@ -5,26 +5,26 @@ import { loginVisitor } from '../redux/slices/visitorSlice';
 import Layout from '../components/Layout';
 import SignupModal from './SignupModal';
 import '../styles/login_css/login.css';
-import '../styles/login_css/profile.css';
-import '../styles/login_css/signupmodal.css';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
-  const [emailSent, setEmailSent] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const { loading, error, isAuthenticated, visitor } = useSelector((state) => state.visitor);
 
-  // On successful login, navigate to dashboard
+  // Redirect to dashboard after login
   useEffect(() => {
     if (isAuthenticated && visitor?.verified) {
+      console.log("isAuthenticated",isAuthenticated);
+      console.log("visitor",visitor);
+      console.log(isAuthenticated && visitor?.verified);
       navigate('/dashboard');
-    } else if (isAuthenticated && !visitor?.verified) {
-      setEmailSent(true);
+    } else if (visitor && !visitor.verified) {
       setShowSignupModal(true);
     }
   }, [isAuthenticated, visitor, navigate]);
@@ -36,9 +36,9 @@ const LoginPage = () => {
     };
   }, []);
 
-  const validateEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    setEmailError(!emailRegex.test(email) ? 'Invalid email format' : '');
+  const validateEmail = (value) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    setEmailError(!regex.test(value) ? 'Invalid email format' : '');
   };
 
   const handleEmailChange = (e) => {
@@ -49,18 +49,16 @@ const LoginPage = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (emailError || !password) return;
+    if (!email || !password || emailError) return;
     dispatch(loginVisitor({ email, password }));
   };
 
   const handleSignupClose = () => {
     setShowSignupModal(false);
-    setEmailSent(true);
   };
 
   const handleSignupComplete = () => {
     setShowSignupModal(false);
-    setEmailSent(false);
     setPassword('');
   };
 
@@ -100,11 +98,6 @@ const LoginPage = () => {
 
             {emailError && <p className="error-message">{emailError}</p>}
             {error && <p className="error-message">{error}</p>}
-            {emailSent && (
-              <p className="success-message">
-                A verification email has been sent to <strong>{email}</strong>. Please check your inbox.
-              </p>
-            )}
           </div>
         </div>
 
@@ -122,5 +115,3 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
-
-

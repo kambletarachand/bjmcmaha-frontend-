@@ -1,0 +1,22 @@
+D:\myprojects\bjmcmaha.xyz\frontend\public\profile images
+├── general secretary
+│   ├── Aroona_General Secretary.jpeg
+│   └── Ekta Sanghvvi_General Secretary.jpeg
+├── members
+│   ├── Atharva Shitole_member.png
+│   ├── Audhut Chavan_member.jpeg
+│   └── Umakant Fulzele_member.jpg
+├── president
+│   └── p.jpeg
+├── secretary
+│   ├── Aniket Lagad Secretary.jpg
+│   ├── BhavenShah_Secretary.jpeg
+│   ├── Ganesh Surve _Secretary.jpg
+│   ├── Kiran Sunil Vaswani_Secretary.jpeg
+│   └── Sujit Dhanak_Secretary.jpg
+├── treasurer
+├── treestr.txt
+└── vice president
+    ├── Jayesh Tank_VP.jpg
+    ├── SantoshKasbe_vp.jpeg
+    └── nilesh makwana VP.jpg
