@@ -7,6 +7,7 @@ import SignupModal from './SignupModal';
 import '../styles/login_css/login.css';
 
 const LoginPage = () => {
+  const [step, setStep] = useState(1); // Step 1: Email, Step 2: Password
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
@@ -17,15 +18,10 @@ const LoginPage = () => {
 
   const { loading, error, isAuthenticated, visitor } = useSelector((state) => state.visitor);
 
-  // Redirect to dashboard after login
+  // Redirect after successful login
   useEffect(() => {
     if (isAuthenticated && visitor?.verified) {
-      console.log("isAuthenticated",isAuthenticated);
-      console.log("visitor",visitor);
-      console.log(isAuthenticated && visitor?.verified);
       navigate('/dashboard');
-    } else if (visitor && !visitor.verified) {
-      setShowSignupModal(true);
     }
   }, [isAuthenticated, visitor, navigate]);
 
@@ -47,6 +43,31 @@ const LoginPage = () => {
     validateEmail(value);
   };
 
+  const handleNext = async (e) => {
+  e.preventDefault();
+  if (!email || emailError) return;
+
+  try {
+    const response = await fetch(`http://localhost:8989/api/visitors/${email}`);
+
+    if (response.status === 200) {
+      const user = await response.json();
+      if (user.verified) {
+        setStep(2); // Verified → allow password entry
+      } else {
+        setEmailError('Your email is not verified. Please check your inbox for the verification link.');
+      }
+    } else if (response.status === 202) {
+      const message = await response.text();
+      setEmailError('A verification link has been sent to your email. Please check your inbox before logging in.');
+    } else {
+      setEmailError('Unexpected error. Try again.');
+    }
+  } catch (err) {
+    setEmailError('Network error or user not found.');
+  }
+};
+
   const handleLogin = (e) => {
     e.preventDefault();
     if (!email || !password || emailError) return;
@@ -60,6 +81,7 @@ const LoginPage = () => {
   const handleSignupComplete = () => {
     setShowSignupModal(false);
     setPassword('');
+    setStep(2); // After verification, allow login
   };
 
   return (
@@ -68,33 +90,42 @@ const LoginPage = () => {
         <div className="login-floating-container">
           <div className="login-container">
             <h1>Login Page</h1>
-            <form onSubmit={handleLogin}>
-              <div className="form-group">
-                <label htmlFor="email">Email:</label>
-                <input
-                  id="email"
-                  type="email"
-                  value={email}
-                  onChange={handleEmailChange}
-                  required
-                />
-              </div>
 
-              <div className="form-group">
-                <label htmlFor="password">Password:</label>
-                <input
-                  id="password"
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-              </div>
+            {step === 1 && (
+              <form onSubmit={handleNext}>
+                <div className="form-group">
+                  <label htmlFor="email">Email:</label>
+                  <input
+                    id="email"
+                    type="email"
+                    value={email}
+                    onChange={handleEmailChange}
+                    required
+                  />
+                </div>
+                <button type="submit" disabled={loading || !!emailError}>
+                  {loading ? 'Checking...' : 'Next'}
+                </button>
+              </form>
+            )}
 
-              <button type="submit" disabled={loading || !!emailError}>
-                {loading ? 'Logging in...' : 'Login'}
-              </button>
-            </form>
+            {step === 2 && (
+              <form onSubmit={handleLogin}>
+                <div className="form-group">
+                  <label htmlFor="password">Password:</label>
+                  <input
+                    id="password"
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                </div>
+                <button type="submit" disabled={loading}>
+                  {loading ? 'Logging in...' : 'Login'}
+                </button>
+              </form>
+            )}
 
             {emailError && <p className="error-message">{emailError}</p>}
             {error && <p className="error-message">{error}</p>}

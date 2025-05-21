@@ -1,0 +1,53 @@
+/* AdminDashboardPage.css */
+
+/* Overall layout container */
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* Social/Register bar (top bar) */
+.social-register {
+  background-color: #222;
+  color: white;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* Header styles */
+.header {
+  background-color: #004080;
+  color: white;
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Main content area */
+.main-content {
+  flex-grow: 1;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: white;
+  box-shadow: 0 0 8px rgba(0,0,0,0.05);
+  border-radius: 8px;
+}
+
+/* Footer styles */
+.footer {
+  background-color: #222;
+  color: #aaa;
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 0.85rem;
+  margin-top: auto;
+}

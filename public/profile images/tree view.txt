@@ -1,0 +1,79 @@
+D:\myprojects\bjmcmaha.xyz\frontend\public\profile images
+├── IT
+│   └── Tarachand Kamble _ IT.jpg
+├── New folder
+│   ├── AnuradhaPatil.jpeg
+│   ├── Ganesh Surve _Secretary.jpg
+│   ├── KakoliGhosh.jpeg
+│   ├── SantoshKasbe_vp.jpeg
+│   ├── WhatsApp Image 2025-05-15 at 6.59.35 PM.jpeg
+│   ├── nilesh makwana VP.jpg
+│   └── suraj Todar.jpeg
+├── general secretary
+│   ├── Aroona_General Secretary.jpeg
+│   ├── Ekta Sanghvvi_General Secretary.jpeg
+│   ├── Kiran Sunil Vaswani_Secretary.jpeg
+│   └── SureshBarawkar_General Secretary.jpeg
+├── members
+│   ├── AmitRaut_member.jpeg
+│   ├── AsaramMane_member.jpeg
+│   ├── Atharva Shitole_member.png
+│   ├── Audhut Chavan_member.jpeg
+│   ├── NachiketDineshShitole_member.jpeg
+│   └── Umakant Fulzele_member.jpg
+├── photo to print
+│   ├── Amrapali Gaikwad.jpg
+│   ├── Aniket Lagad Secretary.jpg
+│   ├── AsaramMane_member.jpeg
+│   ├── Atharva Shitole_member.png
+│   ├── Ekta Sanghvvi_General Secretary.jpeg
+│   ├── Jayesh Tank_VP.jpg
+│   ├── TK photo.jpg
+│   ├── Umakant Fulzele_member.jpg
+│   ├── WhatsApp Image 2025-05-15 at 11.33.46 PM.jpeg
+│   ├── WhatsApp Image 2025-05-15 at 4.54.28 PM.jpeg
+│   └── WhatsApp Image 2025-05-18 at 2.58.12 PM.jpeg
+├── photo to print.zip
+├── president
+│   └── p.jpeg
+├── secretary
+│   ├── AdityaChavan_Secretary.jpeg
+│   ├── Aniket Lagad Secretary.jpg
+│   ├── AnuradhaPatil.jpeg
+│   ├── BhavenShah_Secretary.jpeg
+│   ├── Ganesh Surve _Secretary.jpg
+│   ├── KakoliGhosh.jpeg
+│   └── YatinMane_Secretary.jpeg
+├── temp
+│   ├── 1 (VP _GS)
+│   │   ├── Aroona_General Secretary_6.jpeg
+│   │   ├── Ekta Sanghvvi_General Secretary_7.jpeg
+│   │   ├── Kiran Sunil Vaswani_Secretary_8.jpeg
+│   │   ├── PranitaVijayChavhan_Treasurer_10.jpeg
+│   │   ├── SantoshGaikwad_VP_5.jpeg
+│   │   ├── SantoshKasbe_vp_1.jpeg
+│   │   ├── Suraj Todkar_VP _4.jpeg
+│   │   ├── YogeshSonawane_VP_3.jpeg
+│   │   └── nilesh makwana VP_2.jpg
+│   ├── 2 Secretary
+│   │   ├── Aniket Lagad Secretary.jpg
+│   │   ├── BhavenShah_Secretary.jpeg
+│   │   ├── Ganesh Surve _Secretary.jpg
+│   │   └── Sujit Dhanak_Secretary.jpg
+│   ├── AsaramMane_member.jpeg
+│   ├── Atharva Shitole_member.png
+│   ├── Audhut Chavan_member.jpeg
+│   ├── NachiketDineshShitole_member.jpeg
+│   └── Umakant Fulzele_member.jpg
+├── temp.zip
+├── treasurer
+│   └── PranitaVijayChavhan_Treasurer_10.jpeg
+├── tree view.txt
+├── treestr.txt
+└── vice president
+    ├── Jayesh Tank_VP.jpg
+    ├── SantoshGaikwad_VP.jpeg
+    ├── SantoshKasbe_vp.jpeg
+    ├── Suraj Todkar_VP _4.jpeg
+    ├── YogeshSonawane_VP_3.jpeg
+    └── nilesh makwana VP.jpg

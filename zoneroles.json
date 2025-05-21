@@ -1,0 +1,100 @@
+{
+  "zones": {
+    "Konkan Region": [
+      "Thane",
+      "Mumbai Suburban",
+      "Mumbai City",
+      "Raigad",
+      "Ratnagiri",
+      "Sindhudurg"
+    ],
+    "Pune Region": [
+      "Pune",
+      "Satara",
+      "Sangli",
+      "Solapur",
+      "Kolhapur"
+    ],
+    "Nagpur Region": [
+      "Nagpur",
+      "Bhandara",
+      "Gondia",
+      "Chandrapur",
+      "Gadchiroli"
+    ],
+    "Nashik Region": [
+      "Nashik",
+      "Ahmednagar",
+      "Dhule",
+      "Jalgaon",
+      "Nandurbar"
+    ],
+    "Aurangabad Region": [
+      "Aurangabad",
+      "Jalna",
+      "Beed",
+      "Osmanabad",
+      "Latur",
+      "Nanded",
+      "Parbhani",
+      "Hingoli"
+    ],
+    "Amravati Region": [
+      "Amravati",
+      "Akola",
+      "Yavatmal",
+      "Washim",
+      "Buldhana",
+      "Wardha"
+    ]
+  },
+  "roles": {
+    "visitor": {
+      "description": "Default user of the state",
+      "permissions": [
+        "View public content",
+        "Join as member",
+        "Make donations"
+      ]
+    },
+    "admin": {
+      "aliases": ["ADMIN", "ITIncharge"],
+      "description": "Full access user for administration",
+      "permissions": [
+        "Full dashboard access",
+        "Manage users, content, and data"
+      ]
+    },
+    "bodyMember": {
+      "roles": {
+        "President": {
+          "responsibility": "Leadership, strategy, public representation, final authority"
+        },
+        "VicePresident": {
+          "positions": ["VicePresident_Z1", "VicePresident_Z2", "VicePresident_Z3", "VicePresident_Z4", "VicePresident_Z5", "VicePresident_Z6"],
+          "responsibility": "Support President, drive campaigns, regional coordination"
+        },
+        "GeneralSecretary": {
+          "positions": ["GeneralSecretary_1", "GeneralSecretary_2", "GeneralSecretary_3", "GeneralSecretary_4"],
+          "responsibility": "Manage daily operations, records, communication"
+        },
+        "Secretary": {
+          "positions": ["Secretary_1", "Secretary_2", "Secretary_3", "Secretary_4", "Secretary_5", "Secretary_6", "Secretary_7", "Secretary_8"],
+          "responsibility": "Support General Secretary, follow-up, correspondence, logistics"
+        },
+        "Treasurer": {
+          "positions": ["Treasurer_1", "Treasurer_2"],
+          "responsibility": "Finance management, budgeting, reporting"
+        },
+        "Member": {
+          "responsibility": "Support activities, attend meetings, uphold discipline"
+        }
+      }
+    },
+    "districtLeader": {
+      "format": "DistrictLeader_{districtName}",
+      "description": "Leader responsible for a specific district",
+      "example": "DistrictLeader_Pune"
+    }
+  }
+}

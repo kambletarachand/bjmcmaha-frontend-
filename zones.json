@@ -1,0 +1,49 @@
+{
+  "Konkan Region": [
+    "Thane",
+    "Mumbai Suburban",
+    "Mumbai City",
+    "Raigad",
+    "Ratnagiri",
+    "Sindhudurg"
+  ],
+  "Pune Region": [
+    "Pune",
+    "Satara",
+    "Sangli",
+    "Solapur",
+    "Kolhapur"
+  ],
+  "Nagpur Region": [
+    "Nagpur",
+    "Bhandara",
+    "Gondia",
+    "Chandrapur",
+    "Gadchiroli"
+  ],
+  "Nashik Region": [
+    "Nashik",
+    "Ahmednagar",
+    "Dhule",
+    "Jalgaon",
+    "Nandurbar"
+  ],
+  "Aurangabad Region": [
+    "Aurangabad",
+    "Jalna",
+    "Beed",
+    "Osmanabad",
+    "Latur",
+    "Nanded",
+    "Parbhani",
+    "Hingoli"
+  ],
+  "Amravati Region": [
+    "Amravati",
+    "Akola",
+    "Yavatmal",
+    "Washim",
+    "Buldhana",
+    "Wardha"
+  ]
+}

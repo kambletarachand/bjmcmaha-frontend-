@@ -5,34 +5,46 @@ import '../styles/aboutus.css';
 
 const teamData = [
   {
-    name: 'Jyoti Sawardekar',
-    designation: 'State President',
+    name: 'Jyoti Nitin Sawardekar',
+    designation: 'President',
     mobile: '',
     image: '/profile images/president/p.jpeg'
   },
   {
-    name: 'Santosh Ashok Gaikwad',
-    designation: 'Vice President',
-    mobile: '8983447127',
-    image: '/profile images/vice president/SantoshKasbe_vp.jpeg'
-  },
-  {
-    name: 'Jayesh Rasikbhai Tank',
+    name: 'Jayash Rasikbhai Tank',
     designation: 'Vice President',
     mobile: '8087440447',
     image: '/profile images/vice president/Jayesh Tank_VP.jpg'
   },
   {
-    name: 'Nilesh Babulal Makwana',
+    name: 'Santosh Bapu Kasbe',
+    designation: 'Vice President',
+    mobile: '7620597572',
+    image: '/profile images/vice president/SantoshKasbe_vp.jpeg'
+  },
+  {
+    name: 'Nilesh Babulal Makawana',
     designation: 'Vice President',
     mobile: '8983013713',
     image: '/profile images/vice president/nilesh makwana VP.jpg'
   },
   {
-    name: 'Aroona Chandrakant Kavathekar',
-    designation: 'General Secretary',
-    mobile: '9850568844',
-    image: '/profile images/general secretary/Aroona_General Secretary.jpeg'
+    name: 'Santosh Ashok Gaikwad',
+    designation: 'Vice President',
+    mobile: '8983447127',
+    image: '/profile images/vice president/SantoshGaikwad_VP.jpeg'
+  },
+  {
+    name: 'Suraj Pralhad Todakar',
+    designation: 'Vice President',
+    mobile: '9960036547',
+    image: '/profile images/vice president/Suraj Todkar_VP _4.jpeg'
+  },
+  {
+    name: 'Yogesh Digambar Sonawane',
+    designation: 'Vice President',
+    mobile: '8275465114',
+    image: '/profile images/vice president/YogeshSonawane_VP_3.jpeg'
   },
   {
     name: 'Ekta Manish Sanghvvi',
@@ -41,10 +53,22 @@ const teamData = [
     image: '/profile images/general secretary/Ekta Sanghvvi_General Secretary.jpeg'
   },
   {
-    name: 'Aniket Lagad',
-    designation: 'Secretary',
-    mobile: '7773999002',
-    image: '/profile images/secretary/Aniket Lagad Secretary.jpg'
+    name: 'Aroona Chandrakant Kavathekar',
+    designation: 'General Secretary',
+    mobile: '9850568844',
+    image: '/profile images/general secretary/Aroona_General Secretary.jpeg'
+  },
+  {
+    name: 'Kiran Sunil Vaswani',
+    designation: 'General Secretary',
+    mobile: '8559050038',
+    image: '/profile images/general secretary/Kiran Sunil Vaswani_Secretary.jpeg'
+  },
+  {
+    name: 'Suresh Bhau Barawkar',
+    designation: 'General Secretary',
+    mobile: '7588870515',
+    image: '/profile images/general secretary/SureshBarawkar_General Secretary.jpeg'
   },
   {
     name: 'Bhavin Hemant Shah',
@@ -53,16 +77,64 @@ const teamData = [
     image: '/profile images/secretary/BhavenShah_Secretary.jpeg'
   },
   {
-    name: 'Kiran Sunil Vaswani',
+    name: 'Sagar Malhari Kudale',
     designation: 'Secretary',
-    mobile: '',
-    image: '/profile images/secretary/Kiran Sunil Vaswani_Secretary.jpeg'
+    mobile: '8007866455',
+    image: ''
   },
   {
-    name: 'Pranali Chavan',
+    name: 'Yatin Ajay Mane',
+    designation: 'Secretary',
+    mobile: '7776808434',
+    image: '/profile images/secretary/YatinMane_Secretary.jpeg'
+  },
+  {
+    name: 'Aditya Sanjay Chavan',
+    designation: 'Secretary',
+    mobile: '9511670108',
+    image: '/profile images/secretary/AdityaChavan_Secretary.jpeg'
+  },
+  {
+    name: 'Aniket Ramesh Lagad',
+    designation: 'Secretary',
+    mobile: '777399902',
+    image: '/profile images/secretary/Aniket Lagad Secretary.jpg'
+  },
+  {
+    name: 'Ganesh Surve',
+    designation: 'Secretary',
+    mobile: '9145369295',
+    image: '/profile images/secretary/Ganesh Surve _Secretary.jpg'
+  },
+  {
+    name: 'Kakoli Bishwajit Ghosh',
+    designation: 'Secretary',
+    mobile: '9970525058',
+    image: '/profile images/secretary/KakoliGhosh.jpeg'
+  },
+  {
+    name: 'Anuradha Shiddgonda Patil',
+    designation: 'Secretary',
+    mobile: '8180028099',
+    image: '/profile images/secretary/AnuradhaPatil.jpeg'
+  },
+  {
+    name: 'Aman Nitin Sawardekar',
+    designation: 'Treasurer',
+    mobile: '7350002671',
+    image: ''
+  },
+  {
+    name: 'Adv. Pranali Vijay Chavan',
     designation: 'Treasurer',
     mobile: '8805334983',
-    image: '/profile images/treasurer/default.jpg'
+    image: '/profile images/treasurer/PranitaVijayChavhan_Treasurer_10.jpeg'
+  },
+  {
+    name: 'Tarchand Appasaheb Kamble',
+    designation: 'IT Team',
+    mobile: '7259244212',
+    image: '/profile images/IT/Tarachand Kamble _ IT.jpg'
   },
   {
     name: 'Atharva Rajendra Shitole',
@@ -71,18 +143,37 @@ const teamData = [
     image: '/profile images/members/Atharva Shitole_member.png'
   },
   {
-    name: 'Umakant Shamrao Fulzele',
+    name: 'Nachiket Dinesh Shitole',
     designation: 'Member',
-    mobile: '9881543808',
-    image: '/profile images/members/Umakant Fulzele_member.jpg'
+    mobile: '9697972002',
+    image: '/profile images/members/NachiketDineshShitole_member.jpeg'
   },
   {
     name: 'Asaram Devidas Mane',
     designation: 'Member',
     mobile: '8805369017',
-    image: '/profile images/members/AsharamMane_member.jpeg'
+    image: '/profile images/members/AsaramMane_member.jpeg'
+  },
+  {
+    name: 'Avdhut Vitthal Chavan',
+    designation: 'Member',
+    mobile: '9762040049',
+    image: '/profile images/members/Audhut Chavan_member.jpeg'
+  },
+  {
+    name: 'Amit Vitthal Raut',
+    designation: 'Member',
+    mobile: '7350002672',
+    image: '/profile images/members/AmitRaut_member.jpeg'
+  },
+  {
+    name: 'Umakant Shamrao Fulzele',
+    designation: 'Member',
+    mobile: '9881543808',
+    image: '/profile images/members/Umakant Fulzele_member.jpg'
   }
 ];
+
 
 const AboutUs = () => {
   const [selectedMember, setSelectedMember] = useState(null);

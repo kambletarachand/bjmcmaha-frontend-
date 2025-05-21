@@ -9,14 +9,14 @@ const AdminNewsManager = () => {
   const [formData, setFormData] = useState({ title: '', summary: '', url: '' });
 
   useEffect(() => {
-    fetch('/api/internal-news')  // Adjust endpoint as needed
+    fetch('http://localhost:8989/api/internal-news')  // Adjust endpoint as needed
       .then(res => res.json())
       .then(data => setNewsList(data));
   }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch('/api/internal-news', {
+    fetch('http://localhost:8989/api/internal-news', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData),
@@ -27,7 +27,7 @@ const AdminNewsManager = () => {
   };
 
   const handleDelete = (id) => {
-    fetch(`/api/internal-news/${id}`, { method: 'DELETE' })
+    fetch(`http://localhost:8989/api/internal-news/${id}`, { method: 'DELETE' })
       .then(() => window.location.reload());
   };
 
