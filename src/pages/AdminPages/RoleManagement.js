@@ -116,17 +116,22 @@ const RoleManagement = () => {
             </div>
           )}
 
-          {['generalsecretary', 'secretary', 'treasurer'].includes(roleType) && (
-            <div className="form-section">
-              <label>Number:</label>
-              <select onChange={(e) => setExtra(e.target.value)}>
-                <option>Select Number</option>
-                {[...Array(8)].map((_, i) => (
-                  <option key={i + 1} value={i + 1}>{i + 1}</option>
-                ))}
-              </select>
-            </div>
-          )}
+         {['generalsecretary', 'secretary', 'treasurer'].includes(roleType) && (
+  <div className="form-section">
+    <label>Number:</label>
+    <select onChange={(e) => setExtra(e.target.value)}>
+      <option value="">Select Number</option>
+      {[...Array(
+        roleType === 'generalsecretary' ? 4 :
+        roleType === 'treasurer' ? 2 :
+        8 // default to 8 for secretary
+      )].map((_, i) => (
+        <option key={i + 1} value={i + 1}>{i + 1}</option>
+      ))}
+    </select>
+  </div>
+)}
+
 
           {roleType === 'districtleader' && (
             <div className="form-section">

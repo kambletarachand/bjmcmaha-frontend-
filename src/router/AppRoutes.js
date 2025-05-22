@@ -23,6 +23,11 @@ import OrgTree from '../components/OrgTree';
 import LoginPage from '../Auth/LoginPage';
 import UserDashboard from '../pages/UserDashBoard';
 import DynamicDashboard from '../pages/DynamicDashboard';
+import UnifiedAdminDashboard from '../pages/Dashboards/UnifiedAdminDashboard';
+import DistrictDashboard from '../pages/Dashboards/DistrictDashboard';
+import GeneralSecretaryDashboard from '../pages/Dashboards/GeneralSecretaryDashboard';
+import VicePresidentDashboard from '../pages/Dashboards/VicePresidentDashboard';
+import SecretaryDashboard from '../pages/Dashboards/SecretaryDashboard';
 
 function AppRoutes() {
   console.log({
@@ -54,7 +59,14 @@ function AppRoutes() {
       <Route path="/org-tree-view" element={<OrgTree/>}/>
       <Route path="/login"  element={<LoginPage/>}/>
       {/*<Route path="/dashboard" element={<UserDashboard />} />*/}
-      <Route path="/dashboard/*" element={<DynamicDashboard />} />
+      <Route path="/dashboard/" element={<DynamicDashboard />} />
+      <Route path="/dashboard/manage-users" element={<UnifiedAdminDashboard />} />
+      <Route path="/dashboard/district-updates" element={<DistrictDashboard />} />
+      <Route path="/dashboard/general-secretary" element={<GeneralSecretaryDashboard/>} />
+<Route path="/dashboard/vice-president" element={<VicePresidentDashboard/>} />
+<Route path="/dashboard/secretary" element={<SecretaryDashboard />} />
+
+      
       </Routes>
   );
 }

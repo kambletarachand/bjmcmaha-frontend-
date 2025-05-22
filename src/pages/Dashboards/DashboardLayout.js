@@ -1,12 +1,16 @@
-// 4. DashboardLayout.js
 import React from 'react';
-import { Outlet, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { BODY_MEMBER_ROLES } from '../Role'; // adjust path as needed
+import DashboardRouter from '../../router/DashboardRouter'; // adjust path as needed
 
 const DashboardLayout = ({ role }) => {
-  const isAdmin = role === 'Admin' || role === 'ITIncharge';
-  const isBodyMember = ['President', 'VicePresident_Z1', 'Secretary_1', 'Treasurer_1', 'Member'].includes(role);
-  const isDistrictLeader = role?.startsWith('DistrictLeader');
-  const isVisitor = role === 'Visitor';
+  const isAdmin = role === 'ADMIN' || role === 'itAdmin';
+  const isBodyMember = BODY_MEMBER_ROLES.includes(role);
+  const isDistrictLeader = role?.toLowerCase().startsWith('districtleader');
+  const isVisitor = role === 'visitor';
+  const isPresident = role==='president';
+
+  console.log('role', role);
 
   return (
     <div className="dashboard-container">
@@ -23,7 +27,7 @@ const DashboardLayout = ({ role }) => {
         </nav>
       </aside>
       <main className="dashboard-content">
-        <Outlet />
+        <DashboardRouter userRole={role} />
       </main>
     </div>
   );

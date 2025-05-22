@@ -7,7 +7,7 @@ import SignupModal from './SignupModal';
 import '../styles/login_css/login.css';
 
 const LoginPage = () => {
-  const [step, setStep] = useState(1); // Step 1: Email, Step 2: Password
+  const [step, setStep] = useState(1);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
@@ -20,12 +20,15 @@ const LoginPage = () => {
 
   // Redirect after successful login
   useEffect(() => {
+    console.log('[useEffect] Checking isAuthenticated and verified...');
     if (isAuthenticated && visitor?.verified) {
+      console.log('[Redirect] Login successful, redirecting to dashboard...');
       navigate('/dashboard');
     }
   }, [isAuthenticated, visitor, navigate]);
 
   useEffect(() => {
+    console.log('[useEffect] Applying login CSS...');
     document.body.classList.add('login-open');
     return () => {
       document.body.classList.remove('login-open');
@@ -33,55 +36,86 @@ const LoginPage = () => {
   }, []);
 
   const validateEmail = (value) => {
+    console.log('[validateEmail] Validating:', value);
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    setEmailError(!regex.test(value) ? 'Invalid email format' : '');
+    const error = !regex.test(value) ? 'Invalid email format' : '';
+    console.log('[validateEmail] Result:', error);
+    setEmailError(error);
   };
 
   const handleEmailChange = (e) => {
     const value = e.target.value;
+    console.log('[handleEmailChange] Email input changed:', value);
     setEmail(value);
     validateEmail(value);
   };
 
   const handleNext = async (e) => {
-  e.preventDefault();
-  if (!email || emailError) return;
+    e.preventDefault();
+    console.log('[handleNext] Step 1 submit clicked. Email:', email);
 
-  try {
-    const response = await fetch(`http://localhost:8989/api/visitors/${email}`);
-
-    if (response.status === 200) {
-      const user = await response.json();
-      if (user.verified) {
-        setStep(2); // Verified → allow password entry
-      } else {
-        setEmailError('Your email is not verified. Please check your inbox for the verification link.');
-      }
-    } else if (response.status === 202) {
-      const message = await response.text();
-      setEmailError('A verification link has been sent to your email. Please check your inbox before logging in.');
-    } else {
-      setEmailError('Unexpected error. Try again.');
+    if (!email || emailError) {
+      console.warn('[handleNext] Invalid email or format error.');
+      return;
     }
-  } catch (err) {
-    setEmailError('Network error or user not found.');
-  }
-};
+
+    try {
+      console.log('[handleNext] Fetching visitor by email...');
+      const response = await fetch(`http://localhost:8989/api/visitors/${email}`);
+
+      if (response.status === 200) {
+        const user = await response.json();
+        console.log('[handleNext] Visitor found:', user);
+
+        if (user.verified) {
+          if (!user.password || user.password.trim() === '') {
+            console.log('[handleNext] No password found. Opening SignupModal...');
+            setShowSignupModal(true);
+          } else {
+            console.log('[handleNext] Password exists. Moving to Step 2 (password input)...');
+            setStep(2);
+          }
+        } else {
+          console.warn('[handleNext] Email not verified.');
+          setEmailError('Your email is not verified. Please check your inbox for the verification link.');
+        }
+
+      } else if (response.status === 202) {
+        console.warn('[handleNext] Verification link sent.');
+        setEmailError('A verification link has been sent to your email. Please check your inbox before logging in.');
+      } else {
+        console.error('[handleNext] Unexpected error status:', response.status);
+        setEmailError('Unexpected error. Try again.');
+      }
+    } catch (err) {
+      console.error('[handleNext] Network error or user not found:', err);
+      setEmailError('Network error or user not found.');
+    }
+  };
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (!email || !password || emailError) return;
+    console.log('[handleLogin] Submitting login for:', email);
+
+    if (!email || !password || emailError) {
+      console.warn('[handleLogin] Missing email or password or has error.');
+      return;
+    }
+
     dispatch(loginVisitor({ email, password }));
+    console.log('[handleLogin] Dispatched loginVisitor action.');
   };
 
   const handleSignupClose = () => {
+    console.log('[handleSignupClose] Closing signup modal...');
     setShowSignupModal(false);
   };
 
   const handleSignupComplete = () => {
+    console.log('[handleSignupComplete] Signup complete. Moving to Step 2...');
     setShowSignupModal(false);
     setPassword('');
-    setStep(2); // After verification, allow login
+    setStep(2);
   };
 
   return (

@@ -1,40 +1,120 @@
+// import React, { Suspense } from 'react';
+// import { useSelector } from 'react-redux';
+// import { Navigate, Routes, Route } from 'react-router-dom';
+// import DashboardLayout from './Dashboards/DashboardLayout';
+
+// import {
+//   ROLES,
+//   isBodyMember,
+//   isDistrictLeader,
+//   isVisitor,
+// } from './Role';
+
+// const UnifiedAdminDashboard = React.lazy(() => import('./Dashboards/UnifiedAdminDashboard'));
+// const VisitorDashboard = React.lazy(() => import('./Dashboards/VisitorDashboard'));
+// const MemberDashboard = React.lazy(() => import('./Dashboards/BodyMemberDashboard'));
+// const DistrictDashboard = React.lazy(() => import('./Dashboards/DistrictDashboard'));
+
+// const DynamicDashboard = () => {
+//   const role = useSelector((state) => state.visitor.visitor?.role);
+// console.log("inside DynamicDashboard",role);
+//   if (!role) return <Navigate to="/login" />;
+
+//   const getComponentByRole = () => {
+//     // Admin covers both admin, itAdmin, president
+//     if ([ROLES.ADMIN, ROLES.IT_ADMIN, ROLES.PRESIDENT].includes(role)) {
+//       return <UnifiedAdminDashboard />;
+//     }
+
+//     if (isDistrictLeader(role)) {
+//       console.log("rendering  DistrictDashboard",role);
+//       return <DistrictDashboard />;
+//     }
+
+//     if (isBodyMember(role)) {
+//       return <MemberDashboard />;
+//     }
+
+//     if (isVisitor(role)) {
+//       return <VisitorDashboard />;
+//     }
+
+//     // Default fallback (if role is unknown)
+//     return <VisitorDashboard />;
+//   };
+
+//   return (
+//     <Routes>
+//       <Route path="/*" element={<DashboardLayout role={role} />}>
+//         <Route
+//           path="overview"
+//           element={<Suspense fallback={<p>Loading...</p>}>{getComponentByRole()}</Suspense>}
+//         />
+//       </Route>
+//     </Routes>
+//   );
+// };
+
+// export default DynamicDashboard;
+
+
 import React, { Suspense } from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate, Routes, Route } from 'react-router-dom';
 import DashboardLayout from './Dashboards/DashboardLayout';
 
+import {
+  ROLES,
+  isBodyMember,
+  isDistrictLeader,
+  isVisitor,
+  isVicePresident,
+  isGeneralSecretary,
+  isSecretary,
+} from './Role';
+
 const UnifiedAdminDashboard = React.lazy(() => import('./Dashboards/UnifiedAdminDashboard'));
 const VisitorDashboard = React.lazy(() => import('./Dashboards/VisitorDashboard'));
-const MemberDashboard = React.lazy(() => import('./Dashboards/BodyMemberDashboard'));
+const MemberDashboard = React.lazy(() => import('./Dashboards/MemberDashboard'));
 const DistrictDashboard = React.lazy(() => import('./Dashboards/DistrictDashboard'));
+const VicePresidentDashboard = React.lazy(() => import('./Dashboards/VicePresidentDashboard'));
+const GeneralSecretaryDashboard = React.lazy(() => import('./Dashboards/GeneralSecretaryDashboard'));
+const SecretaryDashboard = React.lazy(() => import('./Dashboards/SecretaryDashboard'));
 
 const DynamicDashboard = () => {
   const role = useSelector((state) => state.visitor.visitor?.role);
+  console.log("inside DynamicDashboard", role);
+
   if (!role) return <Navigate to="/login" />;
 
   const getComponentByRole = () => {
-    if (['ADMIN', 'ITIncharge'].includes(role)) {
+    if ([ROLES.ADMIN, ROLES.IT_ADMIN, ROLES.PRESIDENT].includes(role)) {
       return <UnifiedAdminDashboard />;
     }
 
-    if (role.startsWith('DistrictLeader')) {
+    if (isVicePresident(role)) {
+      return <VicePresidentDashboard />;
+    }
+
+    if (isGeneralSecretary(role)) {
+      return <GeneralSecretaryDashboard />;
+    }
+
+    if (isSecretary(role)) {
+      return <SecretaryDashboard />;
+    }
+
+    if (isDistrictLeader(role)) {
+      console.log("rendering DistrictDashboard", role);
       return <DistrictDashboard />;
     }
 
-    const bodyMemberRoles = [
-      'President',
-      'VicePresident_Z1', 'VicePresident_Z2', 'VicePresident_Z3', 'VicePresident_Z4', 'VicePresident_Z5', 'VicePresident_Z6',
-      'GeneralSecretary_1', 'GeneralSecretary_2', 'GeneralSecretary_3', 'GeneralSecretary_4',
-      'Secretary_1', 'Secretary_2', 'Secretary_3', 'Secretary_4', 'Secretary_5', 'Secretary_6', 'Secretary_7', 'Secretary_8',
-      'Treasurer_1', 'Treasurer_2',
-      'Member'
-    ];
-
-    if (bodyMemberRoles.includes(role)) {
-      return <MemberDashboard />;
+    if (isVisitor(role)) {
+      return <VisitorDashboard />;
     }
 
-    return <VisitorDashboard />;
+    // Default fallback for any undefined roles
+    return <MemberDashboard />;
   };
 
   return (
@@ -50,3 +130,4 @@ const DynamicDashboard = () => {
 };
 
 export default DynamicDashboard;
+
